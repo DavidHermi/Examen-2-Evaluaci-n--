@@ -9,23 +9,25 @@ public final class main {
 
     public static void main(final String[] args) {
 
-            final String token = "d1447ce73859ba6b39bb1b7a213ce2e99bd330c697c8868d9f20a8c0a3714e1b";
-            final DiscordClient client = DiscordClient.create(token);
-            final GatewayDiscordClient gateway = client.login().block();
+            final String token = "OTUzNjMxMTc4OTI4MzEyMzYx.YjHYPg.34frQWgo3hPxDt2Wmx5Xt5SeLSI"; //Aqui esta el token del bot creado por mi
+        final DiscordClient client = DiscordClient.create(token);
+        final GatewayDiscordClient gateway = client.login().block();
 
-            gateway.on(MessageCreateEvent.class).subscribe(event -> {
-                final Message message = event.getMessage();
-                if ("!ping".equals(message.getContent())) {
-                    final MessageChannel channel = message.getChannel().block();
-                    channel.createMessage("Pong!").block();
-                }
-            });
+        gateway.on(MessageCreateEvent.class).subscribe(event -> { // en el codigo lo que hacemos es pedir al vot un ping y nos devuelve pong
+            final Message message = event.getMessage();
+            if ("!ping".equals(message.getContent())) {
+                final MessageChannel channel = message.getChannel().block();
+                channel.createMessage("Pong!").block(); //aqui se indica lo de pong de tal manera que devolvera !pong
+            }
+        });
 
-            gateway.onDisconnect().block();
+        gateway.onDisconnect().block();
+
+    }
 
     }
 
 
 
 
-}
+
